@@ -1,7 +1,19 @@
+import { useContext } from 'react';
 import { assets } from '../../assets/assets';
 import './Main.css';
+import { Context } from '../../context/Context';
 
-function Main({name}) {
+
+function Main(){
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            onSent();
+        }}
+    const {onSent,recentPrompts,resultData,showResult,loading,setInput,input} = useContext(Context);
+
+    
     return (
       <>
         <div className="main">
@@ -12,7 +24,7 @@ function Main({name}) {
           <div className="main-container">
             <div className="greet">
               <p>
-                <span>Hello, {name}.</span>
+                <span>Hello</span>
               </p>
               <p>How can I help you today?</p>
             </div>
@@ -36,17 +48,17 @@ function Main({name}) {
             </div>
             <div className="main-bottom">
               <div className="search-box">
-                <input type="text" placeholder="Enter a prompt here" />
+                <input onChange={(e)=>setInput(e.target.value)} value={input} onKeyDown={handleKeyDown} type="text" placeholder="Enter a prompt here" />
                 <div>
                   <img src={assets.gallery_icon} alt="gallery icon" />
                   <img src={assets.mic_icon} alt="mic icon" />
-                  <img src={assets.send_icon} alt="send icon" />
+                  <img onClick={()=>onSent()} src={assets.send_icon} alt="send icon" />
                 </div>
               </div>
               <p className="bottom-info">
                 Gemini can help you with questions, ideas, and more.
               </p>
-            </div>
+            </div>  
           </div>
         </div>
       </>
