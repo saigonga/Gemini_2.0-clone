@@ -14,8 +14,17 @@ const ContextProvider = (props) => {
     const [error, setError] = useState('');
 
     const onSent =async(props)=>{
-        await main(input);     
-        
+
+        setResultData('');
+        setLoading(true);
+        setShowResult(true);
+        setRecentPrompts(input)
+        setError('');
+        const response =await main(input);
+        setResultData(response);
+        setLoading(false);  
+        setInput('');
+
     
     }
     const contextValue = {
@@ -30,7 +39,7 @@ const ContextProvider = (props) => {
         resultData,
         error,
         onSent
-   };
+};
 
     return (
         <Context.Provider value={contextValue}>
