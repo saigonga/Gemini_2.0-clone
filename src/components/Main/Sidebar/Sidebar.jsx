@@ -4,11 +4,11 @@ import { useState } from 'react'
 function Sidebar() {
 
     const[extended, setExtended] = useState(false)
-
-  return (
-    <div className="Sidebar">
+    
+return (
+    <div className="Sidebar" onMouseEnter={()=> setExtended(true)} onMouseLeave={()=> setExtended(false)}>
         <div className="top">
-              <img onClick={() => setExtended(prev =>!prev)} className='menu'  src={assets.menu_icon} alt='menu_icon'/>
+            <img onClick={() => setExtended(prev =>!prev)} className='menu'  src={assets.menu_icon} alt='menu_icon'/>
             <div className="new-chat">
                 <img src={assets.plus_icon} alt='plus icon' />
                 {extended?<p>New Chat</p> : null}

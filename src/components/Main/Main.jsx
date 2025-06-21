@@ -11,8 +11,6 @@ function Main(){
             onSent();
         }}
     const {onSent,recentPrompts,resultData,showResult,loading,setInput,input} = useContext(Context);
-
-    
     return (
       <>
         <div className="main">
