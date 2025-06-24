@@ -8,7 +8,7 @@ function Main(){
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
-            onSent();
+            onSent(input);
         }}
     const {onSent,recentPrompts,resultData,showResult,loading,setInput,input} = useContext(Context);
     return (
@@ -54,7 +54,17 @@ function Main(){
               </div>
               <div className="result-data">
                 <img src={assets.gemini_icon} alt=''/>
+                {loading
+                ?
+                <div className='loader'>
+                  <hr />
+                  <hr />
+                  <hr />
+                </div>
+                :
                 <p dangerouslySetInnerHTML={{__html:resultData}}></p>
+                }
+                
               </div>
             </div>
             }
@@ -65,7 +75,7 @@ function Main(){
                 <div>
                   <img src={assets.gallery_icon} alt="gallery icon" />
                   <img src={assets.mic_icon} alt="mic icon" />
-                  <img onClick={()=>onSent()} src={assets.send_icon} alt="send icon" />
+                  <img onClick={()=>onSent(input)} src={assets.send_icon} alt="send icon" />
                 </div>
               </div>
               <p className="bottom-info">

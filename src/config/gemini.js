@@ -25,9 +25,12 @@ async function main(props) {
     config,
     contents,
   });
+  let result=''
   for await (const chunk of response) {
     console.log(chunk.text);
+    result += chunk.text
   }
+  return result;
 }
 
 export default main;
